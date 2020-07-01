@@ -23,9 +23,8 @@ pipeline {
     }
 
     stage("Artifact Upload"){
-     // echo "Add steps"  [[classifier: '', extension: '', filePath: 'target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar']]
       steps{
-       nexusPublisher nexusInstanceId: 'yacine', nexusRepositoryId: 'devopsdemo',[[classifier: '', extension: '', filePath: 'target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar']], packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'spring-petclinic', groupId: 'org.springframework.samples', packaging: 'jar', version: '2.3']]]
+        nexusPublisher nexusInstanceId: 'yacine', nexusRepositoryId: 'devopsdemo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/spring-petclinic-2.3.1.BUILD-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'spring-petclinic', groupId: 'org.springframework.samples', packaging: 'jar', version: '2.3']]]
       }
     }
 
